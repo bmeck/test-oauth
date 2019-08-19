@@ -4,11 +4,11 @@
 async function main() {
   const {searchParams} = new URL(location);
   const oauth_code = searchParams.get('code');
-  if (!code) {
+  if (!oauth_code) {
     location = 'https://github.com/login/oauth/authorize?client_id=47cf1401c9d6a111c6f1&redirect_uri=https://bmeck.github.io/test-oauth'
   } else {
     const accessTokenURL = new URL('https://github.com/login/oauth/access_token?client_id=47cf1401c9d6a111c6f1&client_secret=3f2b4440e3a27191659d5dd23e9a6060bbee327f');
-    accessTokenURL.searchParams.set('code', code);
+    accessTokenURL.searchParams.set('code', oauth_code);
     const res = await fetch(accessTokenURL, {
       method: 'post'
     });
